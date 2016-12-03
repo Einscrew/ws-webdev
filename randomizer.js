@@ -37,16 +37,15 @@
         $('*').each(function() {
             var attributes = getRndAttributes();
 
-            $(this).fadeIn(options.fadeInterval, function() {
-	            	$(this).css({
+            $(this).fadeOut(options.fadeInterval, function() {
+	            $(this).css({
 	                'color': attributes.color,
 	                'background-color': attributes.backgroundColor,
 	                'font-family': attributes.fontFamily,
 	                'font-size': attributes.fontSize
 	            });
-            })
-           $(this).fadeIn(options.fadeInterval)
-
+            });
+           $(this).fadeIn(options.fadeInterval);
         });
     }
 
