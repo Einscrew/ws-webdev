@@ -9,10 +9,11 @@
                 'Times', 'Palatino', 'Garamond', 'Bookman', 'Avant Garde'
         ],
         interval: 3000,
-        font: {
+        fontSize: {
         	min: 10,
         	max: 30
-        }
+        },
+        fadeInterval: 350
     };
     var hasStarted = false;
     var eventData = '';
@@ -36,15 +37,15 @@
         $('*').each(function() {
             var attributes = getRndAttributes();
 
-            $(this).fadeOut(350, function() {
+            $(this).fadeIn(options.fadeInterval, function() {
 	            	$(this).css({
 	                'color': attributes.color,
 	                'background-color': attributes.backgroundColor,
 	                'font-family': attributes.fontFamily,
 	                'font-size': attributes.fontSize
-	            })
+	            });
             })
-            $(this).fadeIn(350)
+           $(this).fadeIn(options.fadeInterval)
 
         });
     }
@@ -62,7 +63,7 @@
         attributes.backgroundColor =  backgroundColor;
 
         attributes.fontFamily =  options.fonts[getRndInt(0, options.fonts.length)];
-        attributes.fontSize =  getRndInt(options.font.min, options.font.max).toString() + 'px';
+        attributes.fontSize =  getRndInt(options.fontSize.min, options.fontSize.max).toString() + 'px';
 
         return attributes;
     }
