@@ -8,7 +8,11 @@
         fonts: ['Arial', 'Helvetica', 'Courier New', 'Courier', 'Times New Roman',
                 'Times', 'Palatino', 'Garamond', 'Bookman', 'Avant Garde'
         ],
-        interval: 3000
+        interval: 3000,
+        font: {
+        	min: 10,
+        	max: 30
+        }
     };
     var hasStarted = false;
     var eventData = '';
@@ -31,12 +35,17 @@
     function randomizeAtributes() {
         $('*').each(function() {
             var attributes = getRndAttributes();
-            $(this).css({
-                'color': attributes.color,
-                'background-color': attributes.backgroundColor,
-                'font-family': attributes.fontFamily,
-                'font-size': attributes.fontSize
+
+            $(this).fadeOut(350, function() {
+	            	$(this).css({
+	                'color': attributes.color,
+	                'background-color': attributes.backgroundColor,
+	                'font-family': attributes.fontFamily,
+	                'font-size': attributes.fontSize
+	            })
             })
+            $(this).fadeIn(350)
+
         });
     }
 
@@ -53,7 +62,7 @@
         attributes.backgroundColor =  backgroundColor;
 
         attributes.fontFamily =  options.fonts[getRndInt(0, options.fonts.length)];
-        attributes.fontSize =  getRndInt(4, 100).toString() + 'px';
+        attributes.fontSize =  getRndInt(options.font.min, options.font.max).toString() + 'px';
 
         return attributes;
     }
@@ -71,3 +80,4 @@
         return asciiString;
     }
 }(jQuery, window, document));
+
